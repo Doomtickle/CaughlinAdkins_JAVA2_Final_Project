@@ -11,9 +11,6 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
-/**
- * Created by Doomtickle on 11/29/16.
- */
 public class CircleController {
 
     @FXML
@@ -59,6 +56,11 @@ public class CircleController {
             double radius = Double.parseDouble(str);
             area = (PI * radius * radius);
             areaLabel.setText("Area : " + (Math.round(area * 100.0) / 100.0) + " units.");
+            try {
+                drawCircle(radius);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } catch (NumberFormatException e) {
             if (str.isEmpty())
                 new Alert(Alert.AlertType.ERROR, "One or more of the required fields was left blank.  Please fill in all fields.").showAndWait();

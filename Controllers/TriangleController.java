@@ -45,7 +45,7 @@ public class TriangleController {
             perimeter = (base + side1 + side2);
             periLabel.setText("Perimeter : " + (Math.round(perimeter * 100.0) / 100.0) + " units.");
             try {
-                drawTriangle(base, side1, side2);
+                drawTriangle();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -69,6 +69,11 @@ public class TriangleController {
             double height = Double.parseDouble(str2);
             area = ((base * height) / 2);
             areaLabel.setText("Area : " + (Math.round(area * 100.0) / 100.0) + " units.");
+            try {
+                drawTriangle();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } catch (NumberFormatException e) {
             if (str1.isEmpty() || str2.isEmpty())
                 new Alert(Alert.AlertType.ERROR, "One or more of the required fields was left blank.  Please fill in all fields.").showAndWait();
@@ -77,7 +82,7 @@ public class TriangleController {
         }
     }
     @FXML
-    public void drawTriangle(double base, double s2, double s3) throws IOException {
+    public void drawTriangle() throws IOException {
 
         trianglePane.getChildren().clear();
         Polygon triangle = new Polygon();

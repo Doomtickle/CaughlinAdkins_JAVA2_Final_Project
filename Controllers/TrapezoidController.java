@@ -50,7 +50,7 @@ public class TrapezoidController {
             perimeter = (base1 + base2 + side1 + side2);
             periLabel.setText("Perimeter : " + (Math.round(perimeter * 100.0) / 100.0) + " units.");
             try {
-                drawTrapezoid(base1, base2, side1, side2);
+                drawTrapezoid();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -75,6 +75,11 @@ public class TrapezoidController {
             double height = Double.parseDouble(str3);
             area = (((base1 + base2) / 2) * height);
             areaLabel.setText("Area : " + (Math.round(area * 100.0) / 100.0) + " units.");
+            try {
+                drawTrapezoid();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } catch (NumberFormatException e) {
             if (str1.isEmpty() || str2.isEmpty() || str3.isEmpty())
                 new Alert(Alert.AlertType.ERROR, "One or more of the required fields was left blank.  Please fill in all fields.").showAndWait();
@@ -84,7 +89,7 @@ public class TrapezoidController {
     }
 
     @FXML
-    public void drawTrapezoid(double base1, double base2, double s2, double s3) throws IOException {
+    public void drawTrapezoid() throws IOException {
 
         trapezoidPane.getChildren().clear();
         Polygon trapezoid = new Polygon();

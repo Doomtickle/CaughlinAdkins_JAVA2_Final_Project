@@ -65,6 +65,11 @@ public class SquareController {
             double sqSide2 = Double.parseDouble(str2);
             area = (sqSide1 * sqSide2);
             areaLabel.setText("Area : " + (Math.round(area * 100.0) / 100.0) + " units.");
+            try {
+                drawRectangle(sqSide1, sqSide2);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } catch (NumberFormatException e) {
             if (str1.isEmpty() || str2.isEmpty())
                 new Alert(Alert.AlertType.ERROR, "One or more of the required fields was left blank.  Please fill in all fields.").showAndWait();
@@ -88,19 +93,9 @@ public class SquareController {
         r.setStrokeLineCap(StrokeLineCap.ROUND);
         r.setFill(Color.CORNSILK.deriveColor(0, 1.2, 1, 0.6));
 
-        Text width = new Text();
-        Text height = new Text();
-
-        width.setText("Width: " + String.valueOf(s1));
-        width.setX(200.0);
-        width.setY(400.0);
-
-        height.setText("Height: " + String.valueOf(s2));
-        height.setX(300.0);
-        height.setY(400.0);
 
 
-        rectanglePane.getChildren().addAll(width, height, r);
+        rectanglePane.getChildren().addAll(r);
 
 
     }
