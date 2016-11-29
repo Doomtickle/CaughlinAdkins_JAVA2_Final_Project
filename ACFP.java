@@ -1,19 +1,13 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class ACFP extends Application {
     public void start(Stage stage) throws Exception {
         //Load the .fxml file!
-        Parent parent = FXMLLoader.load(getClass().getResource("ACFP.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("Views/Tabs.fxml"));
 
         //Create the scene graph in memory.
         Scene scene = new Scene(parent);

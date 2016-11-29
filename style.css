@@ -3,7 +3,7 @@
     -fx-text-fill:#efefef;
 }
 AnchorPane{
-    -fx-background-image: url('/geometry2.png');
+    -fx-background-image: url('/img/geometry2.png');
 
 }
 #tfTrapezoid{
