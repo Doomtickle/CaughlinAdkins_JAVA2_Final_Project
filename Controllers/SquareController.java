@@ -2,7 +2,6 @@ package Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -21,17 +20,9 @@ public class SquareController {
     @FXML
     private Label areaLabel;          //Label that display the area of the shape.
     @FXML
-    private Button resetButton;       //Button to reset all fields.
-    @FXML
-    private Button helpButton;        //Button for user help.
-    @FXML
     private TextField squareSide1;    //textfield for the first square side.
     @FXML
     private TextField squareSide2;    //textfield for the second square side.
-    @FXML
-    private Button squarePeri;        //Button for square perimeter.
-    @FXML
-    private Button squareArea;        //Button for square area.
 
     //================================= SQUARE FUNCTIONS ==============================//
 

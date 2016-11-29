@@ -21,17 +21,7 @@ public class CircleController {
     @FXML
     private Label areaLabel;          //Label that display the area of the shape.
     @FXML
-    private Button resetButton;       //Button to reset all fields.
-    @FXML
-    private Button helpButton;        //Button for user help.
-    @FXML
-    private TextField tfCircle;       //Top Circle textfield
-    @FXML
     private TextField circRadius;     //textfield for a circle's radius.
-    @FXML
-    private Button circPeri;          //Button to calculate a circle's perimeter.
-    @FXML
-    private Button circArea;          //Button to calculate a circle's area.
     @FXML
     private VBox circlePane;
 

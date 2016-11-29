@@ -3,14 +3,12 @@ package Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -26,10 +24,6 @@ public class TrapezoidController {
     @FXML
     private Label areaLabel;          //Label that display the area of the shape.
     @FXML
-    private Button resetButton;       //Button to reset all fields.
-    @FXML
-    private Button helpButton;        //Button for user help.
-    @FXML
     private TextField trapBase1;      //textfield for a trapezoid's first base.
     @FXML
     private TextField trapBase2;      //textfield for a trapezoid's second base.
@@ -39,10 +33,6 @@ public class TrapezoidController {
     private TextField trapSide1;      //textfield for a trapezoid's first side.
     @FXML
     private TextField trapSide2;      //textfield for a trapezoid's second side.
-    @FXML
-    private Button trapPeri;          //Button to calculate a trapezoid's area.
-    @FXML
-    private Button trapArea;          //Button to calculate a trapezoid's perimeter.
 
     public void trapPListener() //Button listener for a trapezoid's perimeter.
     {

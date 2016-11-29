@@ -11,7 +11,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeLineCap;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 
@@ -20,10 +19,6 @@ public class TriangleController {
     private Label periLabel;          //Label that displays the perimeter of the shape.
     @FXML
     private Label areaLabel;          //Label that display the area of the shape.
-    @FXML
-    private Button resetButton;       //Button to reset all fields.
-    @FXML
-    private Button helpButton;        //Button for user help.
     @FXML
     private TextField triBase;          //textfield for a triangle's base.
     @FXML
