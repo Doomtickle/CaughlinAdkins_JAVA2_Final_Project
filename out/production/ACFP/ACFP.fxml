@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="A1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="473.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ACFPC">
+    <children>
+        <Button fx:id="squareArea" layoutX="32.0" layoutY="217.0" mnemonicParsing="false" onAction="#squareAListener" text="    Area    " />
+        <Button fx:id="squarePeri" layoutX="32.0" layoutY="188.0" mnemonicParsing="false" onAction="#squarePListener" text="Perimeter" />
+        <Button fx:id="circArea" layoutX="117.0" layoutY="217.0" mnemonicParsing="false" onAction="#circAListener" text="    Area    " />
+        <Button fx:id="circPeri" layoutX="117.0" layoutY="188.0" mnemonicParsing="false" onAction="#circPListener" text="Perimeter" />
+        <Button fx:id="triArea" layoutX="205.0" layoutY="217.0" mnemonicParsing="false" onAction="#triAListener" text="    Area    " />
+        <Button fx:id="triPeri" layoutX="205.0" layoutY="188.0" mnemonicParsing="false" onAction="#triPListener" text="Perimeter" />
+        <Button fx:id="pentaPeri" layoutX="370.0" layoutY="188.0" mnemonicParsing="false" onAction="#pentaPListener" text="Perimeter" />
+        <Button fx:id="pentaArea" layoutX="370.0" layoutY="217.0" mnemonicParsing="false" onAction="#pentaAListener" text="    Area    " />
+        <TextField fx:id="tfSquare" alignment="CENTER" editable="false" layoutX="25.0" layoutY="14.0" prefHeight="25.0" prefWidth="84.0" text="Square/Rect">
+            <font>
+                <Font size="11.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="tfCircle" alignment="CENTER" editable="false" layoutX="115.0" layoutY="14.0" prefHeight="25.0" prefWidth="78.0" text="Circle" />
+        <TextField fx:id="tfTriangle" alignment="CENTER" editable="false" layoutX="201.0" layoutY="14.0" prefHeight="25.0" prefWidth="78.0" text="Triangle" />
+        <TextField fx:id="squareSide1" alignment="CENTER" layoutX="32.0" layoutY="79.0" opacity="0.8" prefHeight="25.0" prefWidth="68.0" promptText="(Side 1)">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="squareSide2" alignment="CENTER" layoutX="32.0" layoutY="116.0" opacity="0.8" prefHeight="25.0" prefWidth="67.0" promptText="(Side 2)">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="circRadius" alignment="CENTER" layoutX="118.0" layoutY="92.0" opacity="0.8" prefHeight="25.0" prefWidth="68.0" promptText="(Radius)">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="triBase" alignment="CENTER" layoutX="206.0" layoutY="46.0" opacity="0.8" prefHeight="0.0" prefWidth="67.0" promptText="(Base)">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="triHeight" alignment="CENTER" layoutX="206.0" layoutY="78.0" opacity="0.8" prefHeight="25.0" prefWidth="67.0" promptText="(Height)">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="triSide1" alignment="CENTER" layoutX="206.0" layoutY="110.0" opacity="0.8" prefHeight="25.0" prefWidth="67.0" promptText="(Side 1)">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="triSide2" alignment="CENTER" layoutX="206.0" layoutY="143.0" opacity="0.8" prefHeight="25.0" prefWidth="68.0" promptText="(Side 2)">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+        <Label fx:id="periLabel" alignment="CENTER" layoutX="170.0" layoutY="272.0" prefHeight="20.0" prefWidth="170.0">
+            <font>
+                <Font name="Calibri Bold" size="16.5" />
+            </font>
+        </Label>
+        <Label fx:id="areaLabel" alignment="CENTER" layoutX="186.0" layoutY="292.0" prefHeight="20.0" prefWidth="134.0" textFill="#b50d19">
+            <font>
+                <Font name="Calibri Bold" size="16.5" />
+            </font>
+        </Label>
+        <TextField fx:id="tfTrapezoid" alignment="CENTER" editable="false" layoutX="286.0" layoutY="14.0" prefHeight="25.0" prefWidth="78.0" text=" Trapezoid" />
+        <TextField fx:id="trapBase1" alignment="CENTER" layoutX="291.0" layoutY="46.0" opacity="0.8" prefHeight="20.0" prefWidth="67.0" promptText="(Base 1) ">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="trapBase2" alignment="CENTER" layoutX="291.0" layoutY="75.0" opacity="0.8" prefHeight="10.0" prefWidth="67.0" promptText="(Base 2)">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="trapHeight" alignment="CENTER" layoutX="291.0" layoutY="103.0" opacity="0.8" prefHeight="4.0" prefWidth="67.0" promptText="(Height)">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="trapSide1" alignment="CENTER" layoutX="291.0" layoutY="131.0" opacity="0.8" prefHeight="20.0" prefWidth="68.0" promptText="(Side 1)">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="trapSide2" alignment="CENTER" layoutX="291.0" layoutY="159.0" opacity="0.8" prefHeight="0.0" prefWidth="67.0" promptText="(Side 2)">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#edf3f8" height="66.0" layoutX="159.0" layoutY="260.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="193.0" />
+        <Button fx:id="trapPeri" layoutX="291.0" layoutY="188.0" mnemonicParsing="false" onAction="#trapPListener" text="Perimeter" />
+        <Button fx:id="trapArea" layoutX="291.0" layoutY="217.0" mnemonicParsing="false" onAction="#trapAListener" text="    Area    " />
+        <TextField fx:id="tfPentagon" alignment="CENTER" editable="false" layoutX="370.0" layoutY="14.0" prefHeight="25.0" prefWidth="78.0" text="Pentagon" />
+        <TextField fx:id="pentaSide" alignment="CENTER" layoutX="371.0" layoutY="102.0" opacity="0.8" prefHeight="25.0" prefWidth="68.0" promptText="(Side)">
+            <font>
+                <Font size="10.0" />
+            </font>
+        </TextField>
+        <Button fx:id="resetButton" alignment="CENTER" contentDisplay="CENTER" layoutX="83.0" layoutY="266.0" mnemonicParsing="false" onAction="#resetFields" prefHeight="25.0" prefWidth="68.0" text="Reset" />
+      <Button fx:id="helpButton" layoutX="83.0" layoutY="296.0" mnemonicParsing="false" onAction="#helpListener" prefHeight="25.0" prefWidth="68.0" text="Help?" />
+    </children>
+</AnchorPane>
