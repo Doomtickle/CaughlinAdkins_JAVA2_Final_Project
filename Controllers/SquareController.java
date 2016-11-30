@@ -1,3 +1,10 @@
+/* This class is responsible for all functions inside of the
+   Square or Rectangle tab. Calculates perimeter and area, offers to reset
+   fields, and gives the user a help button if needed. The program
+   will draw the shape according to whichever tab is selected.
+
+   Created By: Daron Adkins and Hunter Caughlin   Turn-in Date: Nov. 30th, 2016 */
+
 package Controllers;
 
 import javafx.fxml.FXML;
@@ -8,13 +15,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeLineCap;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 
 public class SquareController {
     @FXML
-    private VBox rectanglePane;
+    private VBox rectanglePane;		  //"Vertical Box" that our rectangle pane will be placed in.
     @FXML
     private Label periLabel;          //Label that displays the perimeter of the shape.
     @FXML
@@ -24,81 +30,91 @@ public class SquareController {
     @FXML
     private TextField squareSide2;    //textfield for the second square side.
 
-    //================================= SQUARE FUNCTIONS ==============================//
-
+    //============================================ SQUARE FUNCTIONS =======================================//
 
     @FXML
-    void squarePListener() throws IOException //Button listener for a square's perimeter.
+    public void squarePListener() 											//Button listener for a square's perimeter.
     {
-        double perimeter;
-        String str1 = squareSide1.getText();
-        String str2 = squareSide2.getText();
+        double perimeter;						       					 	//Initialze the perimeter variable.
+        String str1 = squareSide1.getText();	       						//Get the string for the first side.
+        String str2 = squareSide2.getText();   								//Get the string for the second side.
 
-        try {
-            double sqSide1 = Double.parseDouble(str1);
+        try  																//TRY the parsing and arithmetic; if error, CATCH.
+        {
+            double sqSide1 = Double.parseDouble(str1);  					//Parse all strings to doubles.
             double sqSide2 = Double.parseDouble(str2);
-            perimeter = (2 * sqSide1) + (2 * sqSide2);
-            periLabel.setText("Perimeter : " + (Math.round(perimeter * 100.0) / 100.0) + " units.");
-            squareSide1.setText("");
-            squareSide2.setText("");
+            perimeter = (2 * sqSide1) + (2 * sqSide2);  					//Calculate perimeter.
+            periLabel.setText("Perimeter : " +
+                    (Math.round(perimeter * 100.0)/100.0) + " units.");			//Set perimeter label.
+
             try {
                 drawRectangle(sqSide1, sqSide2);
-            } catch (IOException e) {
+            } catch (IOException e) {										//If error, stack trace.
                 e.printStackTrace();
             }
-        } catch (NumberFormatException e) {
-            if (str1.isEmpty() || str2.isEmpty())
-                new Alert(Alert.AlertType.ERROR, "One or more of the required fields was left blank.  Please fill in all fields.").showAndWait();
-            else
+        }
+        catch(NumberFormatException e) 										//CATCH if the input is not a number, OR left empty.
+        {
+            if(str1.isEmpty() || str2.isEmpty())        					//Exception #1, empty fields.
+                new Alert(Alert.AlertType.ERROR, "One or more of the required fields" +
+                        " was left blank.  Please fill in all fields.").showAndWait();
+            else															//Exception #2, non-number entered.
                 new Alert(Alert.AlertType.ERROR, "Please only input numbers.").showAndWait();
         }
     }
 
-    public void squareAListener() //Button listener for a square's area.
+    @FXML
+    public void squareAListener() 											//Button listener for a square's area.
     {
-        double area;
-        String str1 = squareSide1.getText();
-        String str2 = squareSide2.getText();
+        double area;														//Initialize the area variable.
+        String str1 = squareSide1.getText();    							//Get the string for the first side.
+        String str2 = squareSide2.getText();								//Get the string for the second side
 
-        try {
-            double sqSide1 = Double.parseDouble(str1);
+        try 																//TRY the parsing and arithmetic; if error, CATCH.
+        {
+            double sqSide1 = Double.parseDouble(str1);						//Parse all strings to doubles.
             double sqSide2 = Double.parseDouble(str2);
-            area = (sqSide1 * sqSide2);
-            areaLabel.setText("Area : " + (Math.round(area * 100.0) / 100.0) + " units.");
+            area = (sqSide1 * sqSide2); 									//Calculate the area.
+            areaLabel.setText("Area : " +
+                    (Math.round(area * 100.0)/100.0) + " units.");				//Set the area label.
+
             try {
-                drawRectangle(sqSide1, sqSide2);
-            } catch (IOException e) {
+                drawRectangle(sqSide1, sqSide2);											//Draw the shape.
+            } catch (IOException e) {										//If error, stack trace.
                 e.printStackTrace();
             }
-        } catch (NumberFormatException e) {
-            if (str1.isEmpty() || str2.isEmpty())
-                new Alert(Alert.AlertType.ERROR, "One or more of the required fields was left blank.  Please fill in all fields.").showAndWait();
-            else
+        }
+        catch(NumberFormatException e) 										//CATCH if the input is not a number, OR left empty.
+        {
+            if(str1.isEmpty() || str2.isEmpty())        					//Exception #1, empty fields.
+                new Alert(Alert.AlertType.ERROR, "One or more of the required fields" +
+                        " was left blank.  Please fill in all fields.").showAndWait();
+            else															//Exception #2, non-number entered.
                 new Alert(Alert.AlertType.ERROR, "Please only input numbers.").showAndWait();
         }
     }
+
     @FXML
-    public void drawRectangle(double s1, double s2) throws IOException {
+    public void drawRectangle(double s1, double s2) throws IOException {    //Draws a rectangle.
 
-        rectanglePane.getChildren().clear();
+        rectanglePane.getChildren().clear();								//Clear the pane.
 
-        Rectangle r = new Rectangle();
-        double side1 = (s1 < 25) ? (s1 * 10) : s1;
+        Rectangle r = new Rectangle();										//New rectangle.
+        double side1 = (s1 < 25) ? (s1 * 10) : s1;							//Determine our draw length.
         double side2 = (s2 < 25) ? (s2 * 10) : s2;
 
-        r.setWidth(side1);
+        r.setWidth(side1);													//Set width and height.
         r.setHeight(side2);
-        r.setStroke(Color.FORESTGREEN);
+        r.setStroke(Color.FORESTGREEN);										//Draw a filled in square or rectangle.
         r.setStrokeWidth(4);
         r.setStrokeLineCap(StrokeLineCap.ROUND);
         r.setFill(Color.CORNSILK.deriveColor(0, 1.2, 1, 0.6));
 
-
-
-        rectanglePane.getChildren().addAll(r);
-
-
+        rectanglePane.getChildren().addAll(r);								//Add to the pane.
     }
+
+    //==================================== OTHER FUNCTIONS =========================================//
+
     @FXML
     public void resetFields() //Sets the prompt fields back to it's default.
     {

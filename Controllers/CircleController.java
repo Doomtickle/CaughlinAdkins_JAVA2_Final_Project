@@ -1,3 +1,10 @@
+/* This class is responsible for all functions inside of the
+   Circle tab. Calculates perimeter and area, offers to reset
+   fields, and gives the user a help button if needed. The program
+   will draw the shape according to whichever tab is selected.
+
+   Created By: Daron Adkins and Hunter Caughlin   Turn-in Date: Nov. 30th, 2016 */
+
 package Controllers;
 
 import javafx.fxml.FXML;
@@ -14,98 +21,110 @@ import java.io.IOException;
 public class CircleController {
 
     @FXML
+    private VBox circlePane;		  //"Vertical Box" in which the circle pane is placed.
+    @FXML
     private Label periLabel;          //Label that displays the perimeter of the shape.
     @FXML
     private Label areaLabel;          //Label that display the area of the shape.
     @FXML
     private TextField circRadius;     //textfield for a circle's radius.
-    @FXML
-    private VBox circlePane;
 
     @FXML
-    public void circPListener() //Button listener for a circle's perimeter.
+    public void circPListener() 											//Button listener for a circle's perimeter.
     {
-        double perimeter;
-        final double PI = Math.PI;
-        String str = circRadius.getText();
+        double perimeter; 													//Initialize the perimeter variable.
+        final double PI = Math.PI;											//Initialize a PI variable.
+        String str = circRadius.getText();									//Get the string for the circle's radius.
 
-        try {
-            double radius = Double.parseDouble(str);
-            perimeter = 2 * (PI * radius);
-            periLabel.setText("Perimeter : " + (Math.round(perimeter * 100.0) / 100.0) + " units.");
+        try 																//TRY the parsing and arithmetic; if error, CATCH.
+        {
+            double radius = Double.parseDouble(str); 						//Parse the string to a double.
+            perimeter = 2 * (PI * radius); 									//Calculate perimeter.
+            periLabel.setText("Perimeter : " +
+                    (Math.round(perimeter * 100.0)/100.0) + " units.");			//Set perimeter label.
+
             try {
-                drawCircle(radius);
-            } catch (IOException e) {
+                drawCircle(radius);											//Draw the shape.
+            } catch (IOException e) {										//If error, stack trace.
                 e.printStackTrace();
             }
-        } catch (NumberFormatException e) {
-            if (str.isEmpty())
-                new Alert(Alert.AlertType.ERROR, "One or more of the required fields was left blank.  Please fill in all fields.").showAndWait();
-            else
+        }
+        catch (NumberFormatException e) 									//CATCH if the input is not a number, OR left empty.
+        {
+            if(str.isEmpty())												//Exception #1, empty fields.
+                new Alert(Alert.AlertType.ERROR, "One or more of the required fields" +
+                        " was left blank.  Please fill in all fields.").showAndWait();
+            else															//Exception #2, non-number entered.
                 new Alert(Alert.AlertType.ERROR, "Please only input numbers.").showAndWait();
         }
     }
 
-    public void circAListener() //Button listener for a circle's area.
+    @FXML
+    public void circAListener() 											//Button listener for a circle's area.
     {
-        double area;
-        final double PI = Math.PI;
-        String str = circRadius.getText();
+        double area; 														//Initialize the area variable.
+        final double PI = Math.PI;											//Initialize a PI variable.
+        String str = circRadius.getText();									//Get the string for the circle's radius.
 
-        try {
-            double radius = Double.parseDouble(str);
-            area = (PI * radius * radius);
-            areaLabel.setText("Area : " + (Math.round(area * 100.0) / 100.0) + " units.");
+        try 																//TRY the parsing and arithmetic; if error, CATCH.
+        {
+            double radius = Double.parseDouble(str); 						//Parse the string to a double.
+            area = (PI * radius * radius); 									//Calculate the area.
+            areaLabel.setText("Area : " +
+                    (Math.round(area * 100.0)/100.0) + " units.");			    //Set the area label.
+
             try {
-                drawCircle(radius);
-            } catch (IOException e) {
+                drawCircle(radius);											//Draw the shape.
+            } catch (IOException e) {										//If error, stack trace.
                 e.printStackTrace();
             }
-        } catch (NumberFormatException e) {
-            if (str.isEmpty())
-                new Alert(Alert.AlertType.ERROR, "One or more of the required fields was left blank.  Please fill in all fields.").showAndWait();
-            else
+        }
+        catch(NumberFormatException e) 										//CATCH if the input is not a number, OR left empty.
+        {
+            if(str.isEmpty())												//Exception #1, empty fields.
+                new Alert(Alert.AlertType.ERROR, "One or more of the required fields" +
+                        " was left blank.  Please fill in all fields.").showAndWait();
+            else															//Exception #2, non-number entered.
                 new Alert(Alert.AlertType.ERROR, "Please only input numbers.").showAndWait();
         }
     }
+
     @FXML
     public void drawCircle(double radius) throws IOException {
 
-        circlePane.getChildren().clear();
+        circlePane.getChildren().clear();						//Clear the pane.
 
-        double drawRadius = (radius < 75) ? radius*3 : radius;
+        double drawRadius = (radius < 75) ? radius*3 : radius;  //Calculate needed radius to draw with.
 
-        Circle circle = new Circle();
-        circle.setCenterX(10.0f);
+        Circle circle = new Circle();							//New shape.
+        circle.setCenterX(10.0f);								//Set the center point.
         circle.setCenterY(10.0f);
-        circle.setRadius(drawRadius);
-        circle.setStroke(Color.FORESTGREEN);
+        circle.setRadius(drawRadius);							//Set the radius using drawRadius
+        circle.setStroke(Color.FORESTGREEN);					//Draw a filled in circle.
         circle.setStrokeWidth(4);
         circle.setStrokeLineCap(StrokeLineCap.ROUND);
         circle.setFill(Color.CORNSILK.deriveColor(0, 1.2, 1, 0.6));
 
-        Text width = new Text();
-        Text height = new Text();
+        Text radiusText = new Text();								//Create a text holder.
 
-        width.setText("Radius: " + String.valueOf(radius));
-        width.setX(200.0);
-        width.setY(400.0);
+        radiusText.setText("Radius: " + String.valueOf(radius));	//Set the string using the value of our radius.
+        radiusText.setX(200.0);										//Placement
+        radiusText.setY(400.0);										//Placement
 
-
-        circlePane.getChildren().addAll(width, height, circle);
-        circlePane.setAlignment(Pos.CENTER_LEFT);
-
+        circlePane.getChildren().addAll(radiusText, circle);		//Add the elements to the pane.
+        circlePane.setAlignment(Pos.CENTER_LEFT);				//Position the pane.
 
     }
+
+    //==================================== OTHER FUNCTIONS =========================================//
 
     @FXML
     public void resetFields() //Sets the prompt fields back to it's default.
     {
         circRadius.setText("");
-
         periLabel.setText("");
         areaLabel.setText("");
-        circlePane.getChildren().clear();
+        circlePane.getChildren().clear(); //Clear the drawing pane as well.
     }
 
     public void helpListener() //Displays a help dialog box to the user. Explains how to get perimeter/area.

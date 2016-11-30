@@ -1,3 +1,10 @@
+/* This class is responsible for all functions inside of the
+   Pentagon tab. Calculates perimeter and area, offers to reset
+   fields, and gives the user a help button if needed. The program
+   will draw the shape according to whichever tab is selected.
+
+   Created By: Daron Adkins and Hunter Caughlin   Turn-in Date: Nov. 30th, 2016 */
+
 package Controllers;
 
 import javafx.fxml.FXML;
@@ -13,7 +20,7 @@ import java.io.IOException;
 
 public class PentagonController {
     @FXML
-    private VBox pentagonPane;
+    private VBox pentagonPane;		  //"Vertical Box" that the pentagon pane will be placed in.
     @FXML
     private Label periLabel;          //Label that displays the perimeter of the shape.
     @FXML
@@ -21,97 +28,89 @@ public class PentagonController {
     @FXML
     private TextField pentaSide;      //Textfield for a pentagon's side.
 
-    @FXML
+    //================================================= PENTAGON FUNCTIONS ================================================//
 
-    public void pentaPListener() //Button listener for a pentagon's perimeter.
+    @FXML
+    public void pentaPListener() 										//Button listener for a pentagon's perimeter.
     {
-        double perimeter;
+        double perimeter;												//Initialze the perimeter variable.
         String str = pentaSide.getText();
 
-        try {
-            double side = Double.parseDouble(str);
-            perimeter = (side * 5);
-            periLabel.setText("Perimeter : " + (Math.round(perimeter * 100.0) / 100.0) + " units.");
+        try 															//TRY the parsing and arithmetic; if error, CATCH.
+        {
+            double side = Double.parseDouble(str);					 	//Parse the string to a double.
+            perimeter = (side * 8); 									//Calculate perimeter.
+            periLabel.setText("Perimeter : " +
+                    (Math.round(perimeter * 100.0)/100.0) + " units.");			//Set the perimeter label.
+
             try {
-                drawPentagon();
-            } catch (IOException e) {
+                drawPentagon();										//Draw the shape.
+            } catch (IOException e) {									//If error, stack trace.
                 e.printStackTrace();
             }
-        } catch (NumberFormatException e) {
-            if (str.isEmpty())
-                new Alert(Alert.AlertType.ERROR, "One or more of the required fields was left blank.  Please fill in all fields.").showAndWait();
-            else
+        }
+        catch (NumberFormatException e) 								//CATCH if the input is not a number, OR left empty.
+        {
+            if(str.isEmpty())											//Exception #1, empty fields.
+                new Alert(Alert.AlertType.ERROR, "One or more of the required fields" +
+                        " was left blank.  Please fill in all fields.").showAndWait();
+            else														//Exception #2, non-number entered.
                 new Alert(Alert.AlertType.ERROR, "Please only input numbers.").showAndWait();
         }
     }
 
-    public void pentaAListener()  //Button listener for a pentagon's area.
+
+    public void pentaAListener()  									    //Button listener for a pentagon's area.
     {
-        double area;
+        double area; 													//Initialize the area variable.
         String str = pentaSide.getText();
 
-        try {
-            double side = Double.parseDouble(str);
-            area = 5 * ((side * side) / (4 * Math.tan(Math.PI / 5)));
-            areaLabel.setText("Area : " + (Math.round(area * 100.0) / 100.0) + " units.");
+        try 															//TRY the parsing and arithmetic; if error, CATCH.
+        {
+            double side = Double.parseDouble(str); 						//Parse the string to a double.
+            area = 5 * ((side * side)/(4*Math.tan(Math.PI/5))); 		//Calculate the area.
+            areaLabel.setText("Area : " +
+                    (Math.round(area * 100.0)/100.0) + " units.");			//Set the area label.
+
             try {
-                drawPentagon();
-            } catch (IOException e) {
+                drawPentagon();										//Draw the shape.
+            } catch (IOException e) {									//If error, stack trace.
                 e.printStackTrace();
             }
-        } catch (NumberFormatException e) {
-            if (str.isEmpty())
-                new Alert(Alert.AlertType.ERROR, "One or more or the required fields has been left blank. Please fill in all fields.").showAndWait();
-            else
+        }
+        catch (NumberFormatException e) 								//CATCH if the input is not a number, OR left empty.
+        {
+            if(str.isEmpty())											//Exception #1, empty fields.
+                new Alert(Alert.AlertType.ERROR, "One or more of the required fields" +
+                        " was left blank.  Please fill in all fields.").showAndWait();
+            else														//Exception #2, non-number entered.
                 new Alert(Alert.AlertType.ERROR, "Please only input numbers.").showAndWait();
         }
     }
 
     @FXML
-    public void drawPentagon() throws IOException {
+    public void drawPentagon() throws IOException {						//Method that will draw our shape.
 
-        pentagonPane.getChildren().clear();
-        Polygon pentagon = new Polygon();
+        pentagonPane.getChildren().clear();								//Clear the pane.
+        Polygon pentagon = new Polygon();								//Create a new polygon.
 
-        double theta = 2 * Math.PI / 5;
-//        for (int i = 0; i < 5; ++i) {
-//            double x = Math.cos(theta * i);
-//            double y = Math.sin(theta * i);
+        double theta = 2 * Math.PI / 5;									//This will be used to draw sides.
 
-//            pentagon.getPoints().set(i, x);
-//            pentagon.getPoints().set(i, y);
-        pentagon.getPoints().setAll(
-               50*(Math.cos(0)), 20*(Math.sin(0)),
+        pentagon.getPoints().setAll(									//Set the points that each line will connect to.
+                50*(Math.cos(0)), 20*(Math.sin(0)),
                 50*(Math.cos(theta * 1)), 50*(Math.sin(theta * 1)),
                 50*(Math.cos(theta * 2)), 50*(Math.sin(theta * 2)),
                 50*(Math.cos(theta * 3)), 50*(Math.sin(theta * 3)),
                 50*(Math.cos(theta * 4)), 50*(Math.sin(theta * 4))
 
-            );
+        );
 
-        pentagon.setStroke(Color.FORESTGREEN);
+        pentagon.setStroke(Color.FORESTGREEN);						   //Draw a filled in pentagon.
         pentagon.setStrokeWidth(4);
         pentagon.setStrokeLineCap(StrokeLineCap.ROUND);
         pentagon.setFill(Color.CORNSILK.deriveColor(0, 1.2, 1, 0.6));
-//        Text baseText = new Text();
-//        Text side2Text = new Text();
-//        Text side3Text = new Text();
-//
-//        baseText.setText("Base: " + String.valueOf(base));
-//        baseText.setX(200.0);
-//        baseText.setY(400.0);
-//
-//        side2Text.setText("Side 2: " + String.valueOf(s2));
-//        side2Text.setX(300.0);
-//        side2Text.setY(400.0);
-//
-//        side3Text.setText("Side 3: " + String.valueOf(s3));
-//        side3Text.setX(300.0);
-//        side3Text.setY(400.0);
 
-        pentagonPane.getChildren().addAll(pentagon);
-
-
+        pentagonPane.getChildren().addAll(pentagon);				   //Add the pentagon to the pane.
     }
 
     //================================== OTHER FUNCTIONS =================================//

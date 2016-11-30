@@ -1,0 +1,11 @@
+#resetButton{
+    -fx-background-color:#9b282a;
+    -fx-text-fill:#efefef;
+}
+AnchorPane{
+    -fx-background-image: url('/img/geometry2.png');
+
+}
+#tfTrapezoid{
+    -fx-font-size: 11px;
+}
