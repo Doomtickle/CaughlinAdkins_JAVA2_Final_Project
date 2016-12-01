@@ -21,7 +21,7 @@
     <TextField fx:id="circRadius" alignment="CENTER" opacity="0.8"
                maxHeight="80.0"
                prefHeight="50.0"
-               maxWidth="130.0" promptText="(Side 1)">
+               maxWidth="130.0" promptText="Radius">
         <font>
             <Font size="24.0"/>
         </font>

@@ -39,7 +39,7 @@ public class PentagonController {
         try 															//TRY the parsing and arithmetic; if error, CATCH.
         {
             double side = Double.parseDouble(str);					 	//Parse the string to a double.
-            perimeter = (side * 8); 									//Calculate perimeter.
+            perimeter = (side * 5); 									//Calculate perimeter.
             periLabel.setText("Perimeter : " +
                     (Math.round(perimeter * 100.0)/100.0) + " units.");			//Set the perimeter label.
 
